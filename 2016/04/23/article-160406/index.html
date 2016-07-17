@@ -1,0 +1,602 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x968F;&amp;#x7740;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x7684;&amp;#x8FED;&amp;#x4EE3;&amp;#x548C;&amp;#x6807;&amp;#x51C6;&amp;#x7684;&amp;#x66F4;&amp;#x65B0;&amp;#xFF0C;&amp;#x5404;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x5728;JavaScript&amp;#x4E0A;&amp;#x5404;API&amp;#x7684;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE与主流浏览器的事件触发器兼容问题">
+<meta property="og:url" content="http://yoursite.com/2016/04/23/article-160406/index.html">
+<meta property="og:site_name" content="Dixiat's blog">
+<meta property="og:description" content="&amp;#x968F;&amp;#x7740;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x7684;&amp;#x8FED;&amp;#x4EE3;&amp;#x548C;&amp;#x6807;&amp;#x51C6;&amp;#x7684;&amp;#x66F4;&amp;#x65B0;&amp;#xFF0C;&amp;#x5404;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x5728;JavaScript&amp;#x4E0A;&amp;#x5404;API&amp;#x7684;&amp;#x">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/article-160406/../../../../../img/article-160406/001.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/article-160406/../../../../../img/article-160406/002.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/article-160406/../../../../../img/article-160406/003.png">
+<meta property="og:updated_time" content="2016-07-17T03:17:54.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE与主流浏览器的事件触发器兼容问题">
+<meta name="twitter:description" content="&amp;#x968F;&amp;#x7740;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x7684;&amp;#x8FED;&amp;#x4EE3;&amp;#x548C;&amp;#x6807;&amp;#x51C6;&amp;#x7684;&amp;#x66F4;&amp;#x65B0;&amp;#xFF0C;&amp;#x5404;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#x5728;JavaScript&amp;#x4E0A;&amp;#x5404;API&amp;#x7684;&amp;#x">
+<meta name="twitter:image" content="http://yoursite.com/2016/04/23/article-160406/../../../../../img/article-160406/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> IE与主流浏览器的事件触发器兼容问题 | Dixiat's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dixiat's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IE与主流浏览器的事件触发器兼容问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-23T01:36:34+08:00" content="2016-04-23">
+              2016-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x968F;&#x7740;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8FED;&#x4EE3;&#x548C;&#x6807;&#x51C6;&#x7684;&#x66F4;&#x65B0;&#xFF0C;&#x5404;&#x6D4F;&#x89C8;&#x5668;&#x5728;JavaScript&#x4E0A;&#x5404;API&#x7684;&#x517C;&#x5BB9;&#x6027;&#x4E5F;&#x5728;&#x9010;&#x6B65;&#x589E;&#x5F3A;&#xFF0C;&#x4F46;&#x662F;&#x90E8;&#x5206;&#x517C;&#x5BB9;&#x6027;&#x7684;&#x95EE;&#x9898;&#x8FD8;&#x5B58;&#x5728;&#xFF0C;&#x4E00;&#x6B21;&#x6027;&#x5217;&#x4E3E;&#x51FA;&#x5404;&#x517C;&#x5BB9;&#x6027;&#x95EE;&#x9898;&#x4E0D;&#x4EC5;&#x5DE5;&#x4F5C;&#x91CF;&#x5927;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#x4E5F;&#x5F88;&#x96BE;&#x8BB0;&#x4F4F;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x9762;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x4F9D;&#x9760;&#x5E73;&#x65F6;&#x7684;&#x79EF;&#x7D2F;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x53C2;&#x8003;&#x7F51;&#x7AD9;&#x7684;&#x5B9E;&#x65F6;&#x5173;&#x6CE8;&#x3002;&#x8FD9;&#x91CC;&#x5C06;JavaScript&#x7EC3;&#x4E60;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x95EE;&#x9898;&#x505A;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;&#x3002;</p>
+<h1 id="&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x8FD0;&#x884C;&#x573A;&#x666F;"><a href="#&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x8FD0;&#x884C;&#x573A;&#x666F;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x8FD0;&#x884C;&#x573A;&#x666F;"></a>&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x8FD0;&#x884C;&#x573A;&#x666F;</h1><p>&#x6709;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x6587;&#x6863;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x7ACB;&#x5373;&#x89E6;&#x53D1;&#x67D0;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;&#x9884;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x7684;&#x8FD0;&#x884C;&#x8FBE;&#x5230;&#x9884;&#x5B9A;&#x7684;&#x6548;&#x679C;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8981;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x5B9A;&#x4E49;&#x76F8;&#x5E94;&#x7684;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x5E76;&#x5728;&#x6587;&#x6863;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#x7684;&#x51FD;&#x6570;&#x4E2D;&#x8FDB;&#x884C;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x4EE5;&#x201C;&#x7F51;&#x9875;&#x76AE;&#x80A4;&#x5207;&#x6362;&#x201D;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;IE&#x4E0E;&#x4E3B;&#x6D41;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x517C;&#x5BB9;&#x95EE;&#x9898;&#xFF1A;</p>
+<blockquote>
+<p>&#x201C;&#x7F51;&#x9875;&#x76AE;&#x80A4;&#x5207;&#x6362;&#x201D;&#x2014;&#x2014;&#x5728;&#x7F51;&#x9875;&#x4E2D;&#x8BBE;&#x7F6E;&#x4E09;&#x79CD;&#x76AE;&#x80A4;&#x6837;&#x5F0F;&#xFF0C;&#x901A;&#x8FC7;&#x4E09;&#x4E2A;&#x9876;&#x90E8;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#x89E6;&#x53D1;&#xFF0C;&#x56E0;&#x4E3A;&#x7F51;&#x9875;&#x8F7D;&#x5165;&#x65F6;&#x9ED8;&#x8BA4;&#x91C7;&#x7528;&#x7B2C;&#x4E00;&#x79CD;&#x6837;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x5728;&#x6587;&#x6863;&#x8F7D;&#x5165;&#x5B8C;&#x6210;&#x540E;&#x7ACB;&#x5373;&#x5E94;&#x7528;&#x6837;&#x5F0F;&#xFF0C;&#x4F7F;&#x663E;&#x793A;&#x6548;&#x679C;&#x5408;&#x4E4E;&#x9884;&#x671F;&#x3002;</p>
+</blockquote>
+<p>HTML&#xFF1A;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#x7F51;&#x9875;&#x76AE;&#x80A4;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span><br><span class="line"></span><br><span class="line">        div#outer {</span><br><span class="line">            width: 200px;</span><br><span class="line">            height: 20px;</span><br><span class="line">            margin: 20px auto;</span><br><span class="line">            padding-right: 310px;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div#box1 {</span><br><span class="line">            background-color: red;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div#box2 {</span><br><span class="line">            background-color: green;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div#box3 {</span><br><span class="line">            background-color: black;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div.innerBox {</span><br><span class="line">            width: 10px;</span><br><span class="line">            height: 10px;</span><br><span class="line">            margin: 5px;</span><br><span class="line">            display: none;</span><br><span class="line">            background-color: white;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div#outer &gt; div {</span><br><span class="line">            width: 20px;</span><br><span class="line">            height: 20px;</span><br><span class="line">            display: inline-block;</span><br><span class="line">            float: left;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        div#navigator {</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">            text-align: center;</span><br><span class="line">            zoom: 1;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ul {</span><br><span class="line">            width: 550px;</span><br><span class="line">            height: auto;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        li {</span><br><span class="line">            display: inline-block;</span><br><span class="line">            border: 1px solid white;</span><br><span class="line">            border-right: 0;</span><br><span class="line">            padding: 5px 30px;</span><br><span class="line">            font-size: 0.9em;</span><br><span class="line">            float: left;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        li:last-child {</span><br><span class="line">            border-right: 1px solid white;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        a {</span><br><span class="line">            text-decoration: none;</span><br><span class="line">            color: white;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        a:hover {</span><br><span class="line">            text-decoration: underline;</span><br><span class="line">        }</span><br><span class="line">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/changeSkin.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;outer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box1&quot;</span> <span class="attr">title</span>=<span class="string">&quot;red&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;innerBox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box2&quot;</span> <span class="attr">title</span>=<span class="string">&quot;green&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;innerBox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box3&quot;</span> <span class="attr">title</span>=<span class="string">&quot;black&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;innerBox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;navigator&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x65B0;&#x95FB;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x5A31;&#x4E50;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x4F53;&#x80B2;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x7535;&#x5F71;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x97F3;&#x4E50;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:;&quot;</span>&gt;</span>&#x65C5;&#x6E38;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&#x4F9D;&#x636E;<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Creating_and_triggering_events" target="_blank" rel="external">&#x706B;&#x72D0;web&#x5F00;&#x53D1;&#x8005;&#x6307;&#x5357;</a>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x63D0;&#x793A;&#xFF0C;&#x4EE5;&#x5185;&#x7F6E;&#x4E8B;&#x4EF6;&#x521B;&#x5EFA;event&#xFF0C;&#x5E76;&#x4EE5;&#x6B64;&#x4E3A;&#x53C2;&#x6570;&#x89E6;&#x53D1;&#x3002;</p>
+<p>JavaScript:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeClickHandler</span>(<span class="params">index, elem, boxs, bgColor, navColor</span>) </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">        <span class="built_in">document</span>.body.style.backgroundColor = bgColor[index];</span><br><span class="line">        <span class="built_in">Array</span>.prototype.forEach.call(elem, <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>{</span><br><span class="line">            element.style.backgroundColor = navColor[index];</span><br><span class="line">        });</span><br><span class="line">        <span class="built_in">Array</span>.prototype.forEach.call(boxs, <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>{</span><br><span class="line">            element.style.display = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">        });</span><br><span class="line">        boxs[index].style.display = <span class="string">&quot;block&quot;</span>;</span><br><span class="line">    };</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">    <span class="keyword">var</span> btns_skin = <span class="built_in">document</span>.getElementById(<span class="string">&quot;outer&quot;</span>).children;</span><br><span class="line">    <span class="keyword">var</span> li = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> innerBox = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;innerBox&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> bg_color = [<span class="string">&quot;#ff7272&quot;</span>, <span class="string">&quot;#56ffb1&quot;</span>, <span class="string">&quot;#939393&quot;</span>];</span><br><span class="line">    <span class="keyword">var</span> nav_color = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;black&quot;</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns_skin.length; i++) {</span><br><span class="line">        btns_skin[i].addEventListener(<span class="string">&quot;click&quot;</span>, makeClickHandler(i, li, innerBox, bg_color, nav_color));</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&apos;click&apos;</span>, {</span><br><span class="line">        <span class="string">&apos;view&apos;</span>: <span class="built_in">window</span>,</span><br><span class="line">        <span class="string">&apos;bubbles&apos;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">&apos;cancelable&apos;</span>: <span class="literal">true</span></span><br><span class="line">    });</span><br><span class="line">    btns_skin[<span class="number">0</span>].dispatchEvent(event);</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<h2 id="&#x89E3;&#x91CA;"><a href="#&#x89E3;&#x91CA;" class="headerlink" title="&#x89E3;&#x91CA;"></a>&#x89E3;&#x91CA;</h2><ul>
+<li>&#x4EE5;&#x201C;click&#x201D;&#x4E3A;&#x53C2;&#x6570;&#x521B;&#x5EFA;&#x9F20;&#x6807;&#x4E8B;&#x4EF6;&#xFF0C;&#x5E76;&#x521D;&#x59CB;&#x5316;&#x4E8B;&#x4EF6;&#x5C5E;&#x6027;&#xFF08;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x63A7;&#x4EF6;&#xFF0C;&#x662F;&#x5426;&#x5192;&#x6CE1;&#xFF0C;&#x4E8B;&#x4EF6;&#x53EF;&#x5426;&#x53D6;&#x6D88;&#xFF09;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&apos;click&apos;</span>, {</span><br><span class="line">        <span class="string">&apos;view&apos;</span>: <span class="built_in">window</span>,</span><br><span class="line">        <span class="string">&apos;bubbles&apos;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">&apos;cancelable&apos;</span>: <span class="literal">true</span></span><br><span class="line">    });</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btns_skin[<span class="number">0</span>].dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h2 id="&#x8FD0;&#x884C;&#x7ED3;&#x679C;"><a href="#&#x8FD0;&#x884C;&#x7ED3;&#x679C;" class="headerlink" title="&#x8FD0;&#x884C;&#x7ED3;&#x679C;"></a>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</h2><ul>
+<li>chrome&#xFF0C;firefox&#xFF0C;edge&#x6D4F;&#x89C8;&#x5668;&#x8FD0;&#x884C;&#x6B63;&#x5E38;</li>
+</ul>
+<p><img src="/2016/04/23/article-160406/../../../../../img/article-160406/001.png" alt=""></p>
+<ul>
+<li>IE&#x65E0;&#x6CD5;&#x52A0;&#x8F7D;&#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x8FD0;&#x884C;&#x5931;&#x8D25;</li>
+</ul>
+<p><img src="/2016/04/23/article-160406/../../../../../img/article-160406/002.png" alt=""></p>
+<h2 id="&#x5206;&#x6790;"><a href="#&#x5206;&#x6790;" class="headerlink" title="&#x5206;&#x6790;"></a>&#x5206;&#x6790;</h2><p>&#x539F;&#x56E0;&#xFF1A;&#x706B;&#x72D0;&#x5F00;&#x53D1;&#x8005;&#x6307;&#x5357;&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x4E8B;&#x4EF6;&#x521B;&#x5EFA;API&#x4E0E;IE&#x4E0D;&#x517C;&#x5BB9;</p>
+<h2 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;</h2><p>&#x53C2;&#x8003;<a href="https://msdn.microsoft.com/zh-cn/library/ff975459(v=vs.85.aspx" target="_blank" rel="external">MSDN&#x5F00;&#x53D1;&#x8005;&#x6307;&#x5357;</a>)&#xFF0C;&#x4F7F;&#x7528;IE&#x517C;&#x5BB9;&#x7684;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x5668;&#x521D;&#x59CB;&#x5316;API&#x3002;</p>
+<p>JavaScript&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">&quot;Event&quot;</span>);</span><br><span class="line">event.initEvent(<span class="string">&quot;click&quot;</span>,<span class="literal">true</span>,<span class="literal">true</span>);</span><br><span class="line">btns_skin[<span class="number">0</span>].dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<h2 id="&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;"><a href="#&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;" class="headerlink" title="&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;"></a>&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</h2><ul>
+<li>IE&#x6D4F;&#x89C8;&#x5668;&#x4EE5;&#x53CA;&#x4E3B;&#x6D41;&#x6D4F;&#x89C8;&#x5668;&#x5747;&#x8FD0;&#x884C;&#x6B63;&#x5E38;</li>
+</ul>
+<p><img src="/2016/04/23/article-160406/../../../../../img/article-160406/003.png" alt=""></p>
+<h2 id="&#x987A;&#x4FBF;&#x4E00;&#x63D0;"><a href="#&#x987A;&#x4FBF;&#x4E00;&#x63D0;" class="headerlink" title="&#x987A;&#x4FBF;&#x4E00;&#x63D0;"></a>&#x987A;&#x4FBF;&#x4E00;&#x63D0;</h2><p>IE&#x6D4F;&#x89C8;&#x5668;&#x4E4B;&#x524D;&#x8BF4;&#x652F;&#x6301;fireEvent&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x4E0D;&#x518D;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;dispatchEvent&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x517C;&#x5BB9;&#x6027;&#x95EE;&#x9898;&#x3002;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/23/article-160404-2/" rel="next" title="在循环中绑定事件处理函数问题">
+                <i class="fa fa-chevron-left"></i> 在循环中绑定事件处理函数问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/17/article-160717/" rel="prev" title="更换系统或重装系统后hexo博客的转移和恢复">
+                更换系统或重装系统后hexo博客的转移和恢复 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Dixiat" />
+          <p class="site-author-name" itemprop="name">Dixiat</p>
+          <p class="site-description motion-element" itemprop="description">勇敢地迈出第一步！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件触发器的运行场景"><span class="nav-number">1.</span> <span class="nav-text">事件触发器的运行场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解释"><span class="nav-number">1.1.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">1.2.</span> <span class="nav-text">运行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">1.4.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改之后的运行结果："><span class="nav-number">1.5.</span> <span class="nav-text">修改之后的运行结果：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺便一提"><span class="nav-number">1.6.</span> <span class="nav-text">顺便一提</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dixiat</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
