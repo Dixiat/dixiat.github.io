@@ -1,0 +1,622 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端工具 VS Code," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7B80;&amp;#x4ECB;VS Code&amp;#x662F;&amp;#x5FAE;&amp;#x8F6F;&amp;#x51FA;&amp;#x54C1;&amp;#x7684;&amp;#x4E00;&amp;#x6B3E;&amp;#x8F7B;&amp;#x91CF;&amp;#x7EA7;Web&amp;#x96C6;&amp;#x6210;&amp;#x5F00;&amp;#x53D1;&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x768">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的前端开发环境——VS Code篇(一)">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/article-160905/index.html">
+<meta property="og:site_name" content="Dixiat's blog">
+<meta property="og:description" content="&amp;#x7B80;&amp;#x4ECB;VS Code&amp;#x662F;&amp;#x5FAE;&amp;#x8F6F;&amp;#x51FA;&amp;#x54C1;&amp;#x7684;&amp;#x4E00;&amp;#x6B3E;&amp;#x8F7B;&amp;#x91CF;&amp;#x7EA7;Web&amp;#x96C6;&amp;#x6210;&amp;#x5F00;&amp;#x53D1;&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x768">
+<meta property="og:image" content="http://yoursite.com/2016/09/05/article-160905/../../../../../img/article-160905/001.png">
+<meta property="og:image" content="http://yoursite.com/2016/09/05/article-160905/../../../../../img/article-160905/002.png">
+<meta property="og:image" content="http://yoursite.com/2016/09/05/article-160905/../../../../../img/article-160905/003.png">
+<meta property="og:image" content="http://yoursite.com/2016/09/05/article-160905/../../../../../img/article-160905/004.png">
+<meta property="og:updated_time" content="2016-09-05T13:31:23.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的前端开发环境——VS Code篇(一)">
+<meta name="twitter:description" content="&amp;#x7B80;&amp;#x4ECB;VS Code&amp;#x662F;&amp;#x5FAE;&amp;#x8F6F;&amp;#x51FA;&amp;#x54C1;&amp;#x7684;&amp;#x4E00;&amp;#x6B3E;&amp;#x8F7B;&amp;#x91CF;&amp;#x7EA7;Web&amp;#x96C6;&amp;#x6210;&amp;#x5F00;&amp;#x53D1;&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x768">
+<meta name="twitter:image" content="http://yoursite.com/2016/09/05/article-160905/../../../../../img/article-160905/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 我的前端开发环境——VS Code篇(一) | Dixiat's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Dixiat's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的前端开发环境——VS Code篇(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T19:47:20+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h1><p>VS Code&#x662F;&#x5FAE;&#x8F6F;&#x51FA;&#x54C1;&#x7684;&#x4E00;&#x6B3E;&#x8F7B;&#x91CF;&#x7EA7;Web&#x96C6;&#x6210;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF0C;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x6D41;&#x7545;&#x6027;&#x53CA;&#x529F;&#x80FD;&#x7684;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#x7684;&#x8868;&#x73B0;&#x90FD;&#x5341;&#x5206;&#x51FA;&#x8272;&#xFF0C;&#x5C24;&#x5176;&#x5BF9;&#x4E8E;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#xFF0C;&#x5176;JS&#x53CA;CSS&#x7684;&#x667A;&#x80FD;&#x63D0;&#x793A;&#x96C6;&#x6210;&#x5E26;&#x6765;&#x4E86;&#x8BB8;&#x591A;&#x4FBF;&#x5229;&#x4E4B;&#x5904;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x4E0D;&#x5F97;&#x4E0D;&#x63D0;&#x5B83;&#x81EA;&#x8EAB;&#x5BF9;git&#x7684;&#x652F;&#x6301;&#x4EE5;&#x53CA;&#x4EE3;&#x7801;&#x7684;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x3002;&#x4E0D;&#x4EC5;&#x652F;&#x6301;git&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x67E5;&#x770B;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x7684;&#x5F00;&#x53D1;&#x8BB0;&#x5F55;&#xFF0C;&#x7ECF;&#x8FC7;&#x914D;&#x7F6E;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;Node.js&#x7B49;&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x8C03;&#x8BD5;&#xFF0C;&#x53EF;&#x8C13;&#x5F3A;&#x5927;&#x3002;&#x4F46;&#x76F8;&#x5BF9;&#x4E8E;Sublime Text&#x4EE5;&#x53CA;Atom&#x8FD9;&#x4E24;&#x4E2A;&#x6BD4;&#x8F83;&#x6210;&#x719F;&#x7684;Editor&#xFF0C;VS Code&#x8FD8;&#x662F;&#x5B58;&#x5728;&#x4E0D;&#x5C11;&#x4E0D;&#x8DB3;&#x4E4B;&#x5904;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x975E;js&#x6587;&#x4EF6;&#x65E0;&#x6CD5;&#x652F;&#x6301;&#x4EE3;&#x7801;&#x667A;&#x80FD;&#x63D0;&#x793A;&#xFF0C;html&#x6587;&#x4EF6;&#x4E2D;css&#x63D0;&#x793A;&#x9700;&#x8981;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x7B49;&#x3002;&#x4F46;&#x8FD9;&#x4E9B;&#x7F3A;&#x70B9;&#x5E76;&#x4E0D;&#x963B;&#x788D;&#x6211;&#x5BF9;&#x8FD9;&#x6B3E;Editor&#x7684;&#x559C;&#x7231;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5177;&#x4F53;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x6211;&#x4E2A;&#x4EBA;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+<h1 id="&#x914D;&#x7F6E;"><a href="#&#x914D;&#x7F6E;" class="headerlink" title="&#x914D;&#x7F6E;"></a>&#x914D;&#x7F6E;</h1><h2 id="&#x754C;&#x9762;"><a href="#&#x754C;&#x9762;" class="headerlink" title="&#x754C;&#x9762;"></a>&#x754C;&#x9762;</h2><ul>
+<li>&#x5B57;&#x4F53;&#x9009;&#x62E9;</li>
+</ul>
+<p>VS Code&#x652F;&#x6301;Windows&#xFF0C;Linux&#x4EE5;&#x53CA;Mac&#x4E09;&#x4E2A;&#x5E73;&#x53F0;&#xFF0C;&#x754C;&#x9762;&#x98CE;&#x683C;&#x90FD;&#x6BD4;&#x8F83;&#x4E00;&#x81F4;&#xFF0C;&#x552F;&#x4E00;&#x533A;&#x522B;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x65B9;&#x9762;&#x5728;&#x4E8E;windows&#x7684;&#x5B57;&#x4F53;&#x6E32;&#x67D3;&#x4E0A;&#xFF0C;&#x6BD4;&#x8D77;Mac&#x7684;&#x8FD8;&#x662F;&#x900A;&#x8272;&#x8BB8;&#x591A;&#xFF0C;&#x6240;&#x4EE5;&#x6311;&#x9009;&#x4E00;&#x6B3E;&#x7F8E;&#x89C2;&#x7684;&#x6E90;&#x7801;&#x5B57;&#x4F53;&#x5BF9;&#x5F00;&#x53D1;&#x7684;&#x8212;&#x9002;&#x5EA6;&#x8FD8;&#x662F;&#x6709;&#x86EE;&#x5927;&#x6539;&#x89C2;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x63A8;&#x8350;Hack&#x4EE5;&#x53CA;Source Code Pro&#x8FD9;&#x4E24;&#x6B3E;&#x5B57;&#x4F53;&#xFF0C;&#x5176;&#x4E2D;Source Code Pro&#x662F;&#x6765;&#x81EA;Adobe&#x516C;&#x53F8;&#x7684;&#x4E00;&#x6B3E;&#x5F00;&#x6E90;&#x5B57;&#x4F53;&#x3002;&#x6211;&#x4E2A;&#x4EBA;&#x6BD4;&#x8F83;&#x559C;&#x6B22;Hack&#xFF0C;&#x5176;&#x5728;windows&#x4E0B;VS Code&#x7684;&#x663E;&#x793A;&#x6548;&#x679C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;&#x8FD9;&#x4E24;&#x8005;&#x90FD;&#x662F;&#x633A;&#x4E0D;&#x9519;&#x7684;&#x9009;&#x62E9;&#xFF01;</p>
+<p><img src="/2016/09/05/article-160905/../../../../../img/article-160905/001.png" alt=""></p>
+<p>&#x4E0B;&#x8F7D;&#x7F51;&#x5740;&#xFF1A;<br><a href="https://github.com/adobe-fonts/source-code-pro/releases" target="_blank" rel="external">Source Code Pro-Adobe</a><br><a href="http://hacklang.org/" target="_blank" rel="external">Hack</a></p>
+<ul>
+<li>&#x4E2D;&#x6587;&#x5B57;&#x4F53;&#x663E;&#x793A;</li>
+</ul>
+<p>VS Code&#x7684;&#x4E2D;&#x6587;&#x5B57;&#x4F53;&#x9ED8;&#x8BA4;&#x662F;&#x5B8B;&#x4F53;&#xFF0C;&#x5728;Windows&#x4E0B;&#x7684;&#x663E;&#x793A;&#x6548;&#x679C;&#x5F88;&#x7CDF;&#x7CD5;&#xFF0C;&#x800C;&#x5176;&#x5B9E;&#x5728;VS Code&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x6362;&#x4E2D;&#x6587;&#x5B57;&#x4F53;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x5728;&#x82F1;&#x6587;&#x5B57;&#x4F53;&#x540E;&#x6DFB;&#x52A0;&#x4E2D;&#x6587;&#x7684;&#x5019;&#x8865;&#x5B57;&#x4F53;&#x5373;&#x53EF;&#x3002;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#x2014;&#x2014;&#x6587;&#x4EF6; &gt; &#x9996;&#x9009;&#x9879; &gt; &#x7528;&#x6237;&#x8BBE;&#x7F6E; =&gt; &#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.fontFamily&quot;: &quot;hack,&#x5FAE;&#x8F6F;&#x96C5;&#x9ED1;&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="&#x4E3B;&#x9898;"><a href="#&#x4E3B;&#x9898;" class="headerlink" title="&#x4E3B;&#x9898;"></a>&#x4E3B;&#x9898;</h2><p>VS Code&#x81EA;&#x5E26;&#x7684;&#x9ED1;&#x8272;&#x4E3B;&#x9898;Dark+&#x4EE5;&#x53CA;&#x4EE3;&#x7801;&#x9AD8;&#x4EAE;&#x90FD;&#x5341;&#x5206;&#x7F8E;&#x89C2;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E5F;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x4EE5;&#x4E0B;&#x5176;&#x4ED6;&#x4E3B;&#x9898;&#xFF0C;&#x8FD9;&#x91CC;&#x63A8;&#x8350;One Dark&#x8FD9;&#x6B3E;&#x4E3B;&#x9898;&#xFF0C;&#x663E;&#x793A;&#x6548;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="/2016/09/05/article-160905/../../../../../img/article-160905/002.png" alt=""></p>
+<p>&#x81F3;&#x4E8E;Material&#x90A3;&#x6B3E;&#x4E3B;&#x9898;&#xFF0C;&#x4E2A;&#x4EBA;&#x89C9;&#x5F97;&#x6CE8;&#x91CA;&#x7684;&#x9AD8;&#x4EAE;&#x548C;&#x80CC;&#x666F;&#x6BD4;&#x8F83;&#x96BE;&#x533A;&#x5206;&#xFF0C;&#x6240;&#x4EE5;&#x7528;&#x8FC7;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x8FD8;&#x662F;&#x6539;&#x7528;&#x6210;One Dark&#x3002;</p>
+<h1 id="&#x63D2;&#x4EF6;&#x63A8;&#x8350;"><a href="#&#x63D2;&#x4EF6;&#x63A8;&#x8350;" class="headerlink" title="&#x63D2;&#x4EF6;&#x63A8;&#x8350;"></a>&#x63D2;&#x4EF6;&#x63A8;&#x8350;</h1><p>VS Code&#x672C;&#x8EAB;&#x5DF2;&#x7ECF;&#x96C6;&#x6210;&#x4E86;emmet&#x524D;&#x7AEF;&#x795E;&#x5668;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x989D;&#x5916;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#x4E86;&#xFF0C;&#x4EE5;&#x4E0B;&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5F00;&#x53D1;&#x9700;&#x6C42;&#x81EA;&#x884C;&#x6DFB;&#x52A0;&#xFF1A;</p>
+<ol>
+<li><p>HTML Snippets</p>
+<p> &#x63D0;&#x4F9B;html&#x6A21;&#x677F;&#x53CA;&#x4EE3;&#x7801;&#x7247;&#x6BB5;</p>
+</li>
+<li><p>Beautify</p>
+<p> &#x7F8E;&#x5316;&#x4EE3;&#x7801;(&#x7F29;&#x8FDB;&#x53CA;&#x683C;&#x5F0F;)</p>
+</li>
+<li><p>Trailing Spaces</p>
+<p> &#x53BB;&#x9664;&#x4EE3;&#x7801;&#x4E2D;&#x591A;&#x4F59;&#x7684;&#x7A7A;&#x683C;</p>
+</li>
+<li><p>Align</p>
+<p> &#x8C03;&#x6574;&#x4EE3;&#x7801;&#x7F29;&#x8FDB;</p>
+</li>
+<li><p>HTML CSS Support</p>
+<p> &#x5728;HTML&#x4E2D;&#x6DFB;&#x52A0;CSS&#x4EE3;&#x7801;&#x63D0;&#x793A;&#x652F;&#x6301;</p>
+</li>
+<li><p>Rainbow Brackets</p>
+<p> &#x4E3A;&#x5C0F;&#x62EC;&#x53F7;&#xFF0C;&#x5927;&#x62EC;&#x53F7;&#x7B49;&#x6DFB;&#x52A0;&#x5F69;&#x8679;&#x8272;&#x5339;&#x914D;</p>
+<p> <img src="/2016/09/05/article-160905/../../../../../img/article-160905/003.png" alt=""></p>
+</li>
+<li><p>ESLint</p>
+<p> javascript&#x4EE3;&#x7801;&#x89C4;&#x8303;&#x68C0;&#x67E5;(&#x63D0;&#x4F9B;ES6&#x53CA;JSX&#x652F;&#x6301;)</p>
+</li>
+<li><p>markdownlint</p>
+<p> markdowm&#x8BED;&#x6CD5;&#x89C4;&#x8303;&#x68C0;&#x67E5;</p>
+</li>
+<li><p>Git History</p>
+<p> &#x67E5;&#x770B;git&#x5386;&#x53F2;&#x8BB0;&#x5F55;</p>
+</li>
+<li><p>Autoprefixer</p>
+<p>&#x81EA;&#x52A8;&#x4E3A;CSS&#x4EE3;&#x7801;&#x6DFB;&#x52A0;&#x6D4F;&#x89C8;&#x5668;&#x524D;&#x7F00;</p>
+</li>
+<li><p>CSScomb</p>
+<p>&#x81EA;&#x52A8;&#x8C03;&#x6574;CSS&#x5C5E;&#x6027;&#x987A;&#x5E8F;</p>
+</li>
+<li><p>vscode-icons</p>
+<p>&#x4E3A;&#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x7684;&#x6587;&#x4EF6;&#x6811;&#x63D0;&#x4F9B;&#x56FE;&#x6807;&#x524D;&#x7F00;</p>
+<p><img src="/2016/09/05/article-160905/../../../../../img/article-160905/004.png" alt=""></p>
+</li>
+<li><p>AutoFileName </p>
+<p>&#x81EA;&#x52A8;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x8865;&#x5168;</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端工具-VS-Code/" rel="tag">#前端工具 VS Code</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/17/article-160717/" rel="next" title="更换系统或重装系统后hexo博客的转移和恢复">
+                <i class="fa fa-chevron-left"></i> 更换系统或重装系统后hexo博客的转移和恢复
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Dixiat" />
+          <p class="site-author-name" itemprop="name">Dixiat</p>
+          <p class="site-description motion-element" itemprop="description">勇敢地迈出第一步！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#界面"><span class="nav-number">2.1.</span> <span class="nav-text">界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">2.2.</span> <span class="nav-text">主题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件推荐"><span class="nav-number">3.</span> <span class="nav-text">插件推荐</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dixiat</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
